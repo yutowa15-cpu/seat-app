@@ -1,41 +1,99 @@
+alert("読み込み成功");
 function shuffle(){
 
+   // alert("動いています");
+
+    /
     // 入力した人数を取得  people探す
     let people = document.getElementById("people").value;  
 
+    let boy = document.getElementById("boy").value;  
+    let boyList = boy.split(",");    //男のリスト
+    let boyNum = boyList.length;    //男の人数
+
+    let girl = document.getElementById("girl").value;  
+    let girlList = girl.split(",");  //女のリスト
+    let girlNum = girlList.length;    //女の人数
+
+    //男女それぞれ並びをランダムにする
+    boyList.sort(() => Math.random() - 0.5);
+    girlList.sort(() => Math.random() - 0.5);
+
+
+
+
+
+////******************************************************************************* */
    //  入力した前にしたい人を取得
     let frontPeople = document.getElementById("frontPeople").value;
    ///一人づづ処理
     let frontList = frontPeople.split(",");
+
+
 ////前にする人の人数保存
     let frontNum = frontList.length;
 
-    let numbers = [];　　　// numberという箱を作る
+ //***************************************************************************************************** */
+
+
+
+
+    let numbers = [];// numberという箱を作る
 
     let result = "";
 
-    // 1番〜人数分を作成
-    for(let i = 1; i <= people; i++){
-        numbers.push(i + "番");
-    }
+    //男女交互
+    let maxNum = Math.max(boyNum, girlNum);   //男女で多い方がなくなるまで入れていく
 
-    // ランダムに並び替え
-    numbers.sort(() => Math.random() - 0.5);
+    for(let i = 0; i < maxNum; i++){
+
+        if(i < boyNum){
+            numbers.push(boyList[i] + "番");
+        }
+
+        if(i < girlNum){
+            numbers.push(girlList[i] + "番");
+        }
+
+    }
+  console.log(numbers);
+
+   
+
+
+//＊＊＊＊＊＊＊＊＊前にしたい人を前に＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊    
+
+
+    let frontBoySeat = [0,2,4,6,8,10];
+    let frontGirlSeat = [1,3,5,7,9,11];
+
+    for(let i = 0; i < frontNum; i++){
+        let front;
+        //  前に行く人の行先を決める
+    if (boyList.indexOf(frontList[i]) != -1) {    //前にしたい人が男なら
+         let index = Math.floor(Math.random() * frontBoySeat.length);
+        front = frontBoySeat[index];
+        frontBoySeat.splice(index, 1);
+    
+    }
+    else if (girlList.indexOf(frontList[i]) != -1) {//前にしたい人が女なら
+         let index = Math.floor(Math.random() * frontGirlSeat.length);
+        front = frontGirlSeat[index];
+        frontGirlSeat.splice(index, 1);
+    }
 
     
 
-    for(let i = 0; i < frontNum; i++){
-        let front =Math.floor(Math.random() * 12);    //前の席の定義
-        let TofrontPeople = numbers.indexOf(frontList[i] + "番")
+        let TofrontPeople = numbers.indexOf(frontList[i] + "番")    //前にしたい人の前に行く前の配列番号
+
         if (TofrontPeople != -1) {
          // 交換
 
         let temp = numbers[front];
-        numbers[front] =numbers[TofrontPeople];   ///最前列6人と前にしたい人交換
+        numbers[front] =numbers[TofrontPeople];   ///前に行きたい人を前へ 交換
         numbers[TofrontPeople] = temp;
         }
     }
-
 
 
 
