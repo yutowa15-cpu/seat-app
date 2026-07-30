@@ -22,7 +22,7 @@ function shuffle(){
     for(let i = 0; i <people; i++){
         result +="<td>"+numbers[i]+ "</td>";
 
-        if ((i + 1) % 5 == 0)  {
+        if ((i + 1) % 6 == 0)  {
             result += "</tr>"+"<tr>";
         }
 
