@@ -1,9 +1,9 @@
 alert("読み込み成功");
 function shuffle(){
 
-   // alert("動いています");
+  
 
-    /
+    
     // 入力した人数を取得  people探す
     let people = document.getElementById("people").value;  
 
