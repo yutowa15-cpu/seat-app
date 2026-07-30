@@ -1,4 +1,4 @@
-
+//alert("読み込み成功");
 function shuffle(){
 
    // alert("動いています");
@@ -117,7 +117,15 @@ function shuffle(){
     result += "<table><tr>";
 
     for(let i = 0; i <people; i++){
-        result +="<td>"+numbers[i]+ "</td>";
+        if(boyList.indexOf(numbers[i].replace("番","")) != -1){
+             result +="<td class='boy'>" + numbers[i]+ "</td>";
+        }
+        else{
+            result +="<td class='girl'>" + numbers[i]+ "</td>";
+
+        }
+
+
 
         if ((i + 1) % 6 == 0)  {
             result += "</tr>"+"<tr>";
