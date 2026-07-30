@@ -25,7 +25,7 @@ function shuffle(){
     
 
     for(let i = 0; i < frontNum; i++){
-        let front =i;
+        let front =Math.floor(Math.random() * 12);    //前の席の定義
         let TofrontPeople = numbers.indexOf(frontList[i] + "番")
         if (TofrontPeople != -1) {
          // 交換
