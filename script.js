@@ -11,8 +11,23 @@ function shuffle(){
     let boyList = boy.split(",");    //男のリスト
     let boyNum = boyList.length;    //男の人数
 
-    let girl = document.getElementById("girl").value;  
-    let girlList = girl.split(",");  //女のリスト
+    let girlList =[];
+    let girl = document.getElementById("girl").value; 
+    
+    if(girl.trim() == ""){
+        //女が空白なら自動生成
+        for(let i=1; i<=people; i++){
+            if(boyList.indexOf(i.toString()) == -1)  //boyリストに出席番号i がなければ
+                girlList.push(i.toString());  //出席番号iを女リストに追加
+                //alert("女子の入力がありませんでした。\n男子以外を女子として自動設定します。");
+        }
+    }
+    else{
+        //入力されていたらそのまま使う
+        girlList = girl.split(",");  //女のリスト
+
+    }
+
     let girlNum = girlList.length;    //女の人数
 
     //男女それぞれ並びをランダムにする
